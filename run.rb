@@ -206,7 +206,7 @@ File.open('./actor.basics.tsv', 'r') do |file|
   end
 end
 
-# It generates the file containing the castings inserts.
+# It generates the file containing the castings inserts (includes series).
 File.open('./title.actors.tsv', 'r') do |file|
   n_lines = `wc -l #{file.path}`.to_i
   file.readline
