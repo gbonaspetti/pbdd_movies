@@ -1,7 +1,15 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const db = require('./database.js')
-const port = 3000
+const port = 4000
+
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`)
@@ -184,7 +192,7 @@ app.get('/api/actors/movies', (req, res, next) => {
     })
 })
 
-// Get all genres with rating average and number of movies
+// Get all genres with rating average
 app.get('/api/genres/rating', (req, res, next) => {
   const sql = `SELECT name, AVG(rating) as rating
     FROM classifications
@@ -206,7 +214,7 @@ app.get('/api/genres/rating', (req, res, next) => {
     })
 })
 
-// Get all genres with rating average and number of movies
+// Get all genres with number of movies
 app.get('/api/genres/count', (req, res, next) => {
   const sql = `SELECT name, COUNT(movie_id) as quantity
     FROM classifications
