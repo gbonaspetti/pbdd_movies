@@ -155,7 +155,8 @@ app.get('/api/actors/most/year', (req, res, next) => {
     INNER JOIN movies ON castings.movie_id = movies.id
     WHERE rating IS NOT NULL
     GROUP BY actors.id
-    ORDER BY rating DESC`
+    ORDER BY rating DESC
+    LIMIT 5000`
 
   const params = []
   db.all(sql, params, (err, rows) => {
@@ -172,12 +173,13 @@ app.get('/api/actors/most/year', (req, res, next) => {
 
 // Get actors with that made more movies
 app.get('/api/actors/movies', (req, res, next) => {
-  const sql = `SELECT name, COUNT(movie_id) as quantity, GROUP_CONCAT(title) as titles
+  const sql = `SELECT actors.id as id, name, COUNT(movie_id) as quantity, GROUP_CONCAT(title) as titles
     FROM castings
     INNER JOIN movies ON castings.movie_id = movies.id
     INNER JOIN actors ON castings.actor_id = actors.id
     GROUP BY actor_id
-    ORDER BY quantity DESC`
+    ORDER BY quantity DESC
+    LIMIT 5000`
 
   const params = []
   db.all(sql, params, (err, rows) => {
