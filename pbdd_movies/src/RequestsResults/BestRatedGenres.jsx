@@ -13,14 +13,16 @@ class BestRatedGenres extends React.Component {
   async componentDidMount() {
     const fetchGetBestRatedGenres = await generateFetchResponse(await getBestRatedGenres())
 
-    this.setState({bestRatedGenres: fetchGetBestRatedGenres.body.data})
+    this.setState({ bestRatedGenres: fetchGetBestRatedGenres.body.data })
   }
 
   render () {
     return (
       <div>
         {this.state.bestRatedGenres.map(genre =>
-          <p>{genre.name} - {genre.rating}</p>
+          <p key={genre.name}>
+            {genre.name} - {genre.rating}
+          </p>
         )}
       </div>
     )
