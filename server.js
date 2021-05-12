@@ -37,6 +37,26 @@ app.get('/api/actors/dead', (req, res, next) => {
     })
 })
 
+// Get all possible years
+app.get('/api/years', (req, res, next) => {
+  const sql = `SELECT year
+  FROM movies
+  WHERE year IS NOT NULL
+  GROUP BY year`
+
+  const params = []
+  db.all(sql, params, (err, rows) => {
+      if (err) {
+        res.status(400).json({'error':err.message})
+        return
+      }
+      res.status(200).json({
+          'message':'success',
+          'data':rows
+      })
+    })
+})
+
 // Get the age average of the actors who have already died
 // Note: To be able to calculate their age, the birth must be known
 app.get('/api/actors/deadAVG', (req, res, next) => {
@@ -85,10 +105,11 @@ app.get('/api/actors/ages', (req, res, next) => {
 
 // Get all the movies (title, rating, votes) from a specific year
 app.get('/api/movies/year/:year', (req, res, next) => {
-  const sql = `SELECT title, rating, votes
+  const sql = `SELECT id, title, rating, votes
     FROM movies
     WHERE year = ?
-    ORDER BY rating DESC`
+    ORDER BY rating DESC
+    LIMIT 5000`
 
   const params = [req.params.year]
   db.all(sql, params, (err, rows) => {

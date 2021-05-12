@@ -11,7 +11,7 @@ export const PAGE = {
     MOVIES: '/actors/movies'
   },
   MOVIES: {
-    YEAR: (year = ':year') => `/movies/year/${year}`,
+    YEAR: '/movies/year',
     BEST_YEAR: '/movies/bestyear',
     QUANTITY_YEAR: '/movies/quantity'
   }

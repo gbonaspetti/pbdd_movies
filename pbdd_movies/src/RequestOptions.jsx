@@ -17,7 +17,7 @@ class RequestOptions extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to={PAGE.MOVIES.YEAR('2020')}>
+            <Link to={PAGE.MOVIES.YEAR}>
               Filmes produzidos em um ano especifico
             </Link>
           </li>

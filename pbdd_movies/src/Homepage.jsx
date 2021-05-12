@@ -5,28 +5,32 @@ import {
 } from 'react-router-dom'
 import { PAGE } from './helper.js'
 import RequestOptions from './RequestOptions.jsx'
-import MostProducedGenres  from './RequestsResults/MostProducedGenres.jsx'
-import ActorsAge  from './RequestsResults/ActorsAge.jsx'
-import ActorsLifeExpectancy  from './RequestsResults/ActorsLifeExpectancy.jsx'
-import BestRatedGenres  from './RequestsResults/BestRatedGenres.jsx'
-import BestRatedActors  from './RequestsResults/BestRatedActors.jsx'
-import MostMoviesActors  from './RequestsResults/MostMoviesActors.jsx'
-import BestYearMovies  from './RequestsResults/BestYearMovies.jsx'
-import SpecificYearMovies  from './RequestsResults/SpecificYearMovies.jsx'
-import YearQuantityMovies  from './RequestsResults/YearQuantityMovies.jsx'
+import MostProducedGenres from './RequestsResults/MostProducedGenres.jsx'
+import ActorsAge from './RequestsResults/ActorsAge.jsx'
+import ActorsLifeExpectancy from './RequestsResults/ActorsLifeExpectancy.jsx'
+import BestRatedGenres from './RequestsResults/BestRatedGenres.jsx'
+import BestRatedActors from './RequestsResults/BestRatedActors.jsx'
+import MostMoviesActors from './RequestsResults/MostMoviesActors.jsx'
+import BestYearMovies from './RequestsResults/BestYearMovies.jsx'
+import MoviesFromSpecificYear from './RequestsResults/MoviesFromSpecificYear.jsx'
+import YearQuantityMovies from './RequestsResults/YearQuantityMovies.jsx'
+
+require('./Homepage.css')
 
 class Homepage extends React.Component {
-  render () {
+  render() {
     return (
       <div>
-        <h1>Projeto de banco de dados usando IMDb</h1>
-        <h3>Giulia Bonaspetti Martins</h3>
+        <div className='header'>
+          <h1>Projeto de banco de dados usando IMDb</h1>
+          <h3>Giulia Bonaspetti Martins</h3>
 
-        <p>
-          Esse projeto utiliza o banco de dados disponibilizado pelo IMDb.
-          Ele foi gerado em março de 2021, qualquer mudança realizada no banco de dados
-          original não é atualizada no banco de dados utilizado aqui.
-        </p>
+          <p>
+            Esse projeto utiliza o banco de dados disponibilizado pelo IMDb.
+            Ele foi gerado em março de 2021, qualquer mudança realizada no banco de dados
+            original não é atualizada no banco de dados utilizado aqui.
+          </p>
+        </div>
 
         <Route exact path={PAGE.HOME} component={RequestOptions} />
         <Route path={PAGE.ACTORS.AGE} component={ActorsAge} />
@@ -36,7 +40,7 @@ class Homepage extends React.Component {
         <Route path={PAGE.ACTORS.MOVIES} component={MostMoviesActors} />
         <Route path={PAGE.MOVIES.BEST_YEAR} component={BestYearMovies} />
         <Route path={PAGE.GENRES.PRODUCED} component={MostProducedGenres} />
-        <Route path={PAGE.MOVIES.YEAR(':year')} component={SpecificYearMovies} />
+        <Route path={PAGE.MOVIES.YEAR} component={MoviesFromSpecificYear} />
         <Route path={PAGE.MOVIES.QUANTITY_YEAR} component={YearQuantityMovies} />
       </div>
     )
