@@ -28,3 +28,9 @@ export const getBestRatedActors = () => fetchGet('actors/most/year')
 export const getBestRatedMovies = () => fetchGet('movies/most/year')
 
 export const getAllPossibleYears = () => fetchGet('years')
+
+export const getAllPossibleActors = () => fetchGet('actors')
+
+export const getMoviesMadeByMultipleActors = (actorList) => fetchGet(`actors/multiple?actorList=${
+  actorList.map(actor => `'${actor}'`).join(',')
+}`)

@@ -26,15 +26,15 @@ app.get('/api/actors/dead', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get all possible years
@@ -46,15 +46,15 @@ app.get('/api/years', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get the age average of the actors who have already died
@@ -70,15 +70,15 @@ app.get('/api/actors/deadAVG', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get all the actors who are still alived group by age
@@ -92,15 +92,15 @@ app.get('/api/actors/ages', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get all the movies (title, rating, votes) from a specific year
@@ -113,15 +113,15 @@ app.get('/api/movies/year/:year', (req, res, next) => {
 
   const params = [req.params.year]
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get quantity of movies each year
@@ -134,17 +134,16 @@ app.get('/api/movies/year', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
-
 
 // Get the years that produced better rating movies
 app.get('/api/movies/most/year', (req, res, next) => {
@@ -157,39 +156,45 @@ app.get('/api/movies/most/year', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get the actors that produced better rated movies
+// Note: the original list has a lot actors that only made one 10 rated
+// movie, to leave the results more exciting I added the "more than one" filter
 app.get('/api/actors/most/year', (req, res, next) => {
-  const sql = `SELECT name, AVG(rating) as rating, COUNT(movie_id) as movies
-    FROM actors
-    INNER JOIN castings ON castings.actor_id = actors.id
-    INNER JOIN movies ON castings.movie_id = movies.id
-    WHERE rating IS NOT NULL
-    GROUP BY actors.id
-    ORDER BY rating DESC
+  const sql = `SELECT *
+    FROM (
+      SELECT id, name, AVG(rating) as rating, COUNT(movie_id) as movies
+      FROM actors
+      INNER JOIN castings ON castings.actor_id = actors.id
+      INNER JOIN movies ON castings.movie_id = movies.id
+      WHERE rating IS NOT NULL
+      GROUP BY actors.id
+      ORDER BY rating DESC
+    )
+    WHERE movies > 1
     LIMIT 3000`
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get actors with that made more movies
@@ -204,15 +209,15 @@ app.get('/api/actors/movies', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get all genres with rating average
@@ -226,15 +231,15 @@ app.get('/api/genres/rating', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Get all genres with number of movies
@@ -248,44 +253,65 @@ app.get('/api/genres/count', (req, res, next) => {
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
+})
+
+// Get all possible actors
+app.get('/api/actors', (req, res, next) => {
+  const sql = `SELECT name
+  FROM actors
+  WHERE name IS NOT NULL
+  GROUP BY id
+  LIMIT 3000`
+
+  const params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
+    })
+  })
 })
 
 // Get movies made by 2 or more actors
 app.get('/api/actors/multiple', (req, res, next) => {
-  const sql = `SELECT title, actorsNames
+  const sql = `SELECT id, title, actorsNames
     FROM (
-      SELECT title, COUNT(name) as actorsNumber, GROUP_CONCAT(name) as actorsNames
+      SELECT movies.id as id, title, COUNT(name) as actorsNumber, GROUP_CONCAT(name) as actorsNames
       FROM movies
       INNER JOIN castings ON castings.movie_id = movies.id
       INNER JOIN actors ON actors.id = castings.actor_id
-      WHERE name IN (${req.body.actorList})
+      WHERE name IN (${req.query.actorList})
       GROUP BY movies.id
     )
     WHERE actorsNumber > 1`
 
   const params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({'error':err.message})
-        return
-      }
-      res.status(200).json({
-          'message':'success',
-          'data':rows
-      })
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
     })
+  })
 })
 
 // Default response for any other request
-app.use(function(req, res){
-    res.status(404)
+app.use(function (req, res) {
+  res.status(404)
 })

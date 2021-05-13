@@ -52,6 +52,11 @@ class RequestOptions extends React.Component {
                   Anos que produziram os filmes mais bem classificados
                 </Link>
               </li>
+              <li>
+                <Link to={PAGE.MOVIES.MULTIPLE_ACTORS}>
+                  Filmes feitos por um ou mais atores
+                </Link>
+              </li>
             </ul>
           </li>
           <li>Sobre gêneros:

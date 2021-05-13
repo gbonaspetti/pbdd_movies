@@ -12,6 +12,7 @@ import ActorsWithMoreMovies from './RequestsResults/ActorsWithMoreMovies.jsx'
 import GenresBestRated from './RequestsResults/GenresBestRated.jsx'
 import GenresMostProduced from './RequestsResults/GenresMostProduced.jsx'
 import MoviesFromSpecificYear from './RequestsResults/MoviesFromSpecificYear.jsx'
+import MoviesMadeByMultipleActors from './RequestsResults/MoviesMadeByMultipleActors.jsx'
 import MoviesYearBestRated from './RequestsResults/MoviesYearBestRated.jsx'
 import MoviesYearQuantity from './RequestsResults/MoviesYearQuantity.jsx'
 
@@ -40,6 +41,7 @@ class Homepage extends React.Component {
         <Route path={PAGE.GENRES.RATED} component={GenresBestRated} />
         <Route path={PAGE.GENRES.PRODUCED} component={GenresMostProduced} />
         <Route path={PAGE.MOVIES.YEAR} component={MoviesFromSpecificYear} />
+        <Route path={PAGE.MOVIES.MULTIPLE_ACTORS} component={MoviesMadeByMultipleActors} />
         <Route path={PAGE.MOVIES.BEST_YEAR} component={MoviesYearBestRated} />
         <Route path={PAGE.MOVIES.QUANTITY_YEAR} component={MoviesYearQuantity} />
       </div>

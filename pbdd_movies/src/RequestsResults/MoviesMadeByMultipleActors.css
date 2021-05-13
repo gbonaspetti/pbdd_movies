@@ -1,0 +1,17 @@
+.multipleActors_actorInput {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.multipleActors_actorInput > div {
+  min-width: 15rem;
+  margin-right: 1rem;
+}
+
+.multipleActors_actorInput > button {
+  margin: auto 0;
+}
+
+.multipleActors_searchMovies {
+  float: right;
+}
