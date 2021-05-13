@@ -54,7 +54,7 @@ class RequestOptions extends React.Component {
               </li>
               <li>
                 <Link to={PAGE.MOVIES.MULTIPLE_ACTORS}>
-                  Filmes feitos por um ou mais atores
+                  Filmes feitos por dois ou mais atores
                 </Link>
               </li>
             </ul>
@@ -62,13 +62,13 @@ class RequestOptions extends React.Component {
           <li>Sobre gêneros:
             <ul>
               <li>
-                <Link to={PAGE.GENRES.RATED}>
-                  Gêneros mais bem classificados
+                <Link to={PAGE.GENRES.PRODUCED}>
+                  Gêneros mais produzidos
                 </Link>
               </li>
               <li>
-                <Link to={PAGE.GENRES.PRODUCED}>
-                  Gêneros mais produzidos
+                <Link to={PAGE.GENRES.RATED}>
+                  Gêneros mais bem classificados
                 </Link>
               </li>
             </ul>

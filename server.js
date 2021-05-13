@@ -173,7 +173,7 @@ app.get('/api/movies/most/year', (req, res, next) => {
 app.get('/api/actors/most/year', (req, res, next) => {
   const sql = `SELECT *
     FROM (
-      SELECT id, name, AVG(rating) as rating, COUNT(movie_id) as movies
+      SELECT actors.id as id, name, AVG(rating) as rating, COUNT(movie_id) as movies
       FROM actors
       INNER JOIN castings ON castings.actor_id = actors.id
       INNER JOIN movies ON castings.movie_id = movies.id
@@ -181,7 +181,7 @@ app.get('/api/actors/most/year', (req, res, next) => {
       GROUP BY actors.id
       ORDER BY rating DESC
     )
-    WHERE movies > 1
+    WHERE movies > 10
     LIMIT 3000`
 
   const params = []

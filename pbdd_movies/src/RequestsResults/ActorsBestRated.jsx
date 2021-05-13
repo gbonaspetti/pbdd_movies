@@ -26,7 +26,7 @@ class ActorsBestRated extends React.Component {
       <div>
         <div className='titleWithInformation'>
           <h2>Atores que produziram mais filmes de qualidades</h2>
-          <p>(notas mais altas no IMDb; obrigatoriamente mais de um filme)</p>
+          <p>(notas mais altas no IMDb; obrigatoriamente mais de 10 filmes)</p>
         </div>
 
         <label htmlFor='filter'>Procurando por um ator específico? Filtre a lista aqui: </label>
@@ -44,8 +44,8 @@ class ActorsBestRated extends React.Component {
               state.actorFilter.toUpperCase()
             ))
             .map(actor =>
-              <p key={`${actor.name}_${actor.rating}`}>
-                {actor.name} - nota {actor.rating} - {actor.movies} filme(s)
+              <p key={actor.id}>
+                {actor.name} - nota média {actor.rating} - {actor.movies} filmes
               </p>
             ))
           : <p>Carregando...</p>

@@ -1,0 +1,13 @@
+.moviesFromSpecificYear_information {
+  display: flex;
+  align-items: center;
+}
+
+.moviesFromSpecificYear_notRated {
+  color: gray;
+}
+
+.moviesFromSpecificYear_year {
+  width: 8rem;
+  text-align: center;
+}

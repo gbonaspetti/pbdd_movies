@@ -44,7 +44,7 @@ class MoviesMadeByMultipleActors extends React.Component {
 
     return (
       <div>
-        <h2>Filmes feitos por um ou mais atores</h2>
+        <h2>Filmes feitos por dois ou mais atores</h2>
 
         <div className='multipleActors_actorInput'>
           {[...Array(state.actorsNumber)].map((actor, id) =>

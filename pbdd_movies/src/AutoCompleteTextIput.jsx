@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 const AutoCompleteTextInput = (props) =>
   <Autocomplete
     freeSolo
-    id='free-solo-2-demo'
+    id='autocompleteText'
     disableClearable
     options={props.options}
     onChange={(event, value) => props.onChange(value)}
