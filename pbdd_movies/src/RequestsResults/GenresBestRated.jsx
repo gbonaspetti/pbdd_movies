@@ -2,7 +2,7 @@ import React from 'react'
 import { getBestRatedGenres } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
 
-class BestRatedGenres extends React.Component {
+class GenresBestRated extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,4 +28,4 @@ class BestRatedGenres extends React.Component {
     )
   }
 }
-export default BestRatedGenres
+export default GenresBestRated

@@ -5,23 +5,23 @@ import {
 } from 'react-router-dom'
 import { PAGE } from './helper.js'
 import RequestOptions from './RequestOptions.jsx'
-import MostProducedGenres from './RequestsResults/MostProducedGenres.jsx'
 import ActorsAge from './RequestsResults/ActorsAge.jsx'
+import ActorsBestRated from './RequestsResults/ActorsBestRated.jsx'
 import ActorsLifeExpectancy from './RequestsResults/ActorsLifeExpectancy.jsx'
-import BestRatedGenres from './RequestsResults/BestRatedGenres.jsx'
-import BestRatedActors from './RequestsResults/BestRatedActors.jsx'
-import MostMoviesActors from './RequestsResults/MostMoviesActors.jsx'
-import BestYearMovies from './RequestsResults/BestYearMovies.jsx'
+import ActorsWithMoreMovies from './RequestsResults/ActorsWithMoreMovies.jsx'
+import GenresBestRated from './RequestsResults/GenresBestRated.jsx'
+import GenresMostProduced from './RequestsResults/GenresMostProduced.jsx'
 import MoviesFromSpecificYear from './RequestsResults/MoviesFromSpecificYear.jsx'
-import YearQuantityMovies from './RequestsResults/YearQuantityMovies.jsx'
+import MoviesYearBestRated from './RequestsResults/MoviesYearBestRated.jsx'
+import MoviesYearQuantity from './RequestsResults/MoviesYearQuantity.jsx'
 
 require('./Homepage.css')
 
 class Homepage extends React.Component {
   render() {
     return (
-      <div>
-        <div className='header'>
+      <div className='homepage'>
+        <div className='homepage_header'>
           <h1>Projeto de banco de dados usando IMDb</h1>
           <h3>Giulia Bonaspetti Martins</h3>
 
@@ -34,14 +34,14 @@ class Homepage extends React.Component {
 
         <Route exact path={PAGE.HOME} component={RequestOptions} />
         <Route path={PAGE.ACTORS.AGE} component={ActorsAge} />
+        <Route path={PAGE.ACTORS.RATED} component={ActorsBestRated} />
         <Route path={PAGE.ACTORS.LIFE_EXPECTANCY} component={ActorsLifeExpectancy} />
-        <Route path={PAGE.GENRES.RATED} component={BestRatedGenres} />
-        <Route path={PAGE.ACTORS.RATED} component={BestRatedActors} />
-        <Route path={PAGE.ACTORS.MOVIES} component={MostMoviesActors} />
-        <Route path={PAGE.MOVIES.BEST_YEAR} component={BestYearMovies} />
-        <Route path={PAGE.GENRES.PRODUCED} component={MostProducedGenres} />
+        <Route path={PAGE.ACTORS.MOVIES} component={ActorsWithMoreMovies} />
+        <Route path={PAGE.GENRES.RATED} component={GenresBestRated} />
+        <Route path={PAGE.GENRES.PRODUCED} component={GenresMostProduced} />
         <Route path={PAGE.MOVIES.YEAR} component={MoviesFromSpecificYear} />
-        <Route path={PAGE.MOVIES.QUANTITY_YEAR} component={YearQuantityMovies} />
+        <Route path={PAGE.MOVIES.BEST_YEAR} component={MoviesYearBestRated} />
+        <Route path={PAGE.MOVIES.QUANTITY_YEAR} component={MoviesYearQuantity} />
       </div>
     )
   }

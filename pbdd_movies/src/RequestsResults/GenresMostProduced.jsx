@@ -2,7 +2,7 @@ import React from 'react'
 import { getMostProducedGenres } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
 
-class MostProducedGenres extends React.Component {
+class GenresMostProduced extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,4 +28,4 @@ class MostProducedGenres extends React.Component {
     )
   }
 }
-export default MostProducedGenres
+export default GenresMostProduced

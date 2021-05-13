@@ -2,7 +2,7 @@ import React from 'react'
 import { getMostMoviesActors } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
 
-class MostMoviesActors extends React.Component {
+class ActorsWithMoreMovies extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,6 +19,7 @@ class MostMoviesActors extends React.Component {
   render () {
     return (
       <div>
+        <h2>Atores que participaram de mais filmes</h2>
         {this.state.mostMoviesActors.map(actor =>
           <p key={actor.id}>
             {actor.name} - {actor.quantity} - {actor.titles}
@@ -28,4 +29,4 @@ class MostMoviesActors extends React.Component {
     )
   }
 }
-export default MostMoviesActors
+export default ActorsWithMoreMovies

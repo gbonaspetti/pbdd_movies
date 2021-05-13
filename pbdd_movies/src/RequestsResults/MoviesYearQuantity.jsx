@@ -2,7 +2,7 @@ import React from 'react'
 import { getQuantityMoviesByYear } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
 
-class YearQuantityMovies extends React.Component {
+class MoviesYearQuantity extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,4 +28,4 @@ class YearQuantityMovies extends React.Component {
     )
   }
 }
-export default YearQuantityMovies
+export default MoviesYearQuantity
