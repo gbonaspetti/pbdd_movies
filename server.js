@@ -109,7 +109,7 @@ app.get('/api/movies/year/:year', (req, res, next) => {
     FROM movies
     WHERE year = ?
     ORDER BY rating DESC
-    LIMIT 5000`
+    LIMIT 3000`
 
   const params = [req.params.year]
   db.all(sql, params, (err, rows) => {
@@ -177,7 +177,7 @@ app.get('/api/actors/most/year', (req, res, next) => {
     WHERE rating IS NOT NULL
     GROUP BY actors.id
     ORDER BY rating DESC
-    LIMIT 5000`
+    LIMIT 3000`
 
   const params = []
   db.all(sql, params, (err, rows) => {
@@ -200,7 +200,7 @@ app.get('/api/actors/movies', (req, res, next) => {
     INNER JOIN actors ON castings.actor_id = actors.id
     GROUP BY actor_id
     ORDER BY quantity DESC
-    LIMIT 5000`
+    LIMIT 3000`
 
   const params = []
   db.all(sql, params, (err, rows) => {
