@@ -19,11 +19,15 @@ class GenresMostProduced extends React.Component {
   render () {
     return (
       <div>
-        {this.state.mostProducedGenres.map(genre =>
-          <p key={genre.name}>
-            {genre.name} - {genre.quantity}
-          </p>
-        )}
+        <h2>Gêneros mais produzidos</h2>
+        {this.state.mostProducedGenres.length > 0
+          ? (this.state.mostProducedGenres.map(genre =>
+            <p key={genre.name}>
+              {genre.name} - {genre.quantity} filmes
+            </p>
+          ))
+          : <p>Carregando...</p>
+        }
       </div>
     )
   }

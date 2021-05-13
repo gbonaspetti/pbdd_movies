@@ -19,11 +19,15 @@ class MoviesYearQuantity extends React.Component {
   render () {
     return (
       <div>
-        {this.state.yearQuantityMovies.map(year =>
-          <p key={year.year}>
-            {year.year} - {year.quantity}
-          </p>
-        )}
+        <h2>Quantidade de filmes produzida em cada ano</h2>
+        {this.state.yearQuantityMovies.length > 0
+          ? (this.state.yearQuantityMovies.map(year =>
+            <p key={year.year}>
+              {year.year} - {year.quantity} filmes
+            </p>
+          ))
+          : <p>Carregando...</p>
+        }
       </div>
     )
   }

@@ -44,7 +44,7 @@ class RequestOptions extends React.Component {
               </li>
               <li>
                 <Link to={PAGE.MOVIES.QUANTITY_YEAR}>
-                  A quantidade de filmes produzida em cada ano
+                  Quantidade de filmes produzida em cada ano
                 </Link>
               </li>
               <li>
@@ -58,12 +58,12 @@ class RequestOptions extends React.Component {
             <ul>
               <li>
                 <Link to={PAGE.GENRES.RATED}>
-                  Quais são os gêneros mais bem classificados
+                  Gêneros mais bem classificados
                 </Link>
               </li>
               <li>
                 <Link to={PAGE.GENRES.PRODUCED}>
-                  Quais são os gêneros mais produzidos
+                  Gêneros mais produzidos
                 </Link>
               </li>
             </ul>

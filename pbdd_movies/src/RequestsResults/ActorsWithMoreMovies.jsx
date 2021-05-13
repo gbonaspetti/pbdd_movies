@@ -17,14 +17,19 @@ class ActorsWithMoreMovies extends React.Component {
   }
 
   render () {
+    const commaBetweenLettersRegex = /(,(?=\S)|:)/g
     return (
       <div>
         <h2>Atores que participaram de mais filmes</h2>
-        {this.state.mostMoviesActors.map(actor =>
-          <p key={actor.id}>
-            {actor.name} - {actor.quantity} - {actor.titles}
-          </p>
-        )}
+
+        {this.state.mostMoviesActors.length > 0
+          ? (this.state.mostMoviesActors.map(actor =>
+            <p key={actor.id}>
+              {actor.name} - {actor.quantity} filmes - Filmes: {actor.titles.replace(commaBetweenLettersRegex, ' - ')}
+            </p>
+          ))
+          : <p>Carregando...</p>
+        }
       </div>
     )
   }
