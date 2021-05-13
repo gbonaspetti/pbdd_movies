@@ -10,7 +10,7 @@ class MoviesFromSpecificYear extends React.Component {
     super(props)
     this.state = {
       moviesFromYearList: [],
-      year: 2020,
+      year: 2021,
       yearList: []
     }
   }
@@ -47,7 +47,6 @@ class MoviesFromSpecificYear extends React.Component {
     return (
       <div>
         <label htmlFor='year'>Escolha aqui o ano: </label>
-
         <select
           id='year'
           onChange={this.handleChangeYear}
@@ -60,7 +59,7 @@ class MoviesFromSpecificYear extends React.Component {
           )}
         </select>
 
-        <div>
+        <div className='titleWithInformation'>
           <h2>Filmes produzidos no ano {state.year}</h2>
           <p>ordenados por melhor nota no IMDb</p>
         </div>
