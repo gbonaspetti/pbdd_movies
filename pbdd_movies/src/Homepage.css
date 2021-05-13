@@ -1,8 +1,34 @@
-.header {
+#root {
+  font-family: Calibri, "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif
+}
+
+.homepage {
+  padding: 20px;
+}
+
+.homepage_header {
   background-color: whitesmoke;
   color: dimgray;
   padding: 0px 10px;
   border: 1px solid darkgray;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+.homepage_header > h1 {
+  text-align: center;
+}
+
+.homepage_header > h3 {
+  text-align: right;
+}
+
+.titleWithInformation {
+  display: flex;
+  align-items: baseline;
+}
+
+.titleWithInformation > p {
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
 }
