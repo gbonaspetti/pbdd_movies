@@ -73,6 +73,11 @@ class RequestOptions extends React.Component {
               </li>
             </ul>
           </li>
+          <li>
+            <Link to={PAGE.CUSTOMIZED}>
+              Consulta personalizada
+            </Link>
+          </li>
         </ul>
       </div>
     )

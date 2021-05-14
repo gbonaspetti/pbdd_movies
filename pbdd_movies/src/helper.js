@@ -15,7 +15,8 @@ export const PAGE = {
     MULTIPLE_ACTORS: '/movies/multipleactors',
     QUANTITY_YEAR: '/movies/quantity',
     YEAR: '/movies/year'
-  }
+  },
+  CUSTOMIZED: '/customized'
 }
 
 

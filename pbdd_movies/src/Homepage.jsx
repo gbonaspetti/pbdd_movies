@@ -9,6 +9,7 @@ import ActorsAge from './RequestsResults/ActorsAge.jsx'
 import ActorsBestRated from './RequestsResults/ActorsBestRated.jsx'
 import ActorsLifeExpectancy from './RequestsResults/ActorsLifeExpectancy.jsx'
 import ActorsWithMoreMovies from './RequestsResults/ActorsWithMoreMovies.jsx'
+import CustomizedRequest from './RequestsResults/CustomizedRequest.jsx'
 import GenresBestRated from './RequestsResults/GenresBestRated.jsx'
 import GenresMostProduced from './RequestsResults/GenresMostProduced.jsx'
 import MoviesFromSpecificYear from './RequestsResults/MoviesFromSpecificYear.jsx'
@@ -38,6 +39,7 @@ class Homepage extends React.Component {
         <Route path={PAGE.ACTORS.RATED} component={ActorsBestRated} />
         <Route path={PAGE.ACTORS.LIFE_EXPECTANCY} component={ActorsLifeExpectancy} />
         <Route path={PAGE.ACTORS.MOVIES} component={ActorsWithMoreMovies} />
+        <Route path={PAGE.CUSTOMIZED} component={CustomizedRequest} />
         <Route path={PAGE.GENRES.RATED} component={GenresBestRated} />
         <Route path={PAGE.GENRES.PRODUCED} component={GenresMostProduced} />
         <Route path={PAGE.MOVIES.YEAR} component={MoviesFromSpecificYear} />
