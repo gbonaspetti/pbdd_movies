@@ -6,6 +6,10 @@ import Select from '@material-ui/core/Select'
 import CustomizedRequestActors from './CustomizedRequest/CustomizedRequestActors.jsx'
 import CustomizedRequestGenres from './CustomizedRequest/CustomizedRequestGenres.jsx'
 import CustomizedRequestMovies from './CustomizedRequest/CustomizedRequestMovies.jsx'
+import {
+  getAllPossibleYears
+} from '../async.js'
+import { generateFetchResponse } from '../helper.js'
 
 require('./CustomizedRequest.css')
 
@@ -13,8 +17,19 @@ class CustomizedRequest extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      from: 'movies'
+      from: 'actors',
+      yearList: []
     }
+  }
+
+  async componentDidMount() {
+    const fetchGetAllPossibleYears = await generateFetchResponse(
+      await getAllPossibleYears()
+    )
+
+    this.setState({
+      yearList: fetchGetAllPossibleYears.body.data
+    })
   }
 
   render() {
@@ -30,7 +45,7 @@ class CustomizedRequest extends React.Component {
             labelId='from'
             id='from'
             value={state.from}
-            onChange={(e) => this.setState({ from: e.target.value })}
+            onChange={e => this.setState({ from: e.target.value })}
             label='O que você deseja procurar?'
           >
             <MenuItem value='movies'>
@@ -46,7 +61,9 @@ class CustomizedRequest extends React.Component {
         </FormControl>
 
         {state.from === 'actors' && (
-          <CustomizedRequestActors/>
+          <CustomizedRequestActors
+            yearList={state.yearList}
+          />
         )}
 
         {state.from === 'genres' && (
