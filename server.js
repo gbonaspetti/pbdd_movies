@@ -311,6 +311,25 @@ app.get('/api/actors/multiple', (req, res, next) => {
   })
 })
 
+// Get results from a customized search
+app.get('/api/customized/:from', (req, res, next) => {
+  const sql = `SELECT *
+      FROM ?
+      LIMIT 3000`
+
+  const params = [req.params.from]
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
+    })
+  })
+})
+
 // Default response for any other request
 app.use(function (req, res) {
   res.status(404)
