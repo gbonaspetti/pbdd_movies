@@ -31,6 +31,10 @@ export const getAllPossibleYears = () => fetchGet('years')
 
 export const getAllPossibleActors = () => fetchGet('actors')
 
+export const getMaxVoteNumber = () => fetchGet('maxVote')
+
 export const getMoviesMadeByMultipleActors = (actorList) => fetchGet(`actors/multiple?actorList=${
   actorList.map(actor => `'${actor}'`).join(',')
 }`)
+
+export const getCustomizedSearchResult = (from, query) => fetchGet(`customized?from=${from}${query}`)

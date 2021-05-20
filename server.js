@@ -285,6 +285,24 @@ app.get('/api/actors', (req, res, next) => {
   })
 })
 
+// Get the biggest number of votes
+app.get('/api/maxVote', (req, res, next) => {
+  const sql = `SELECT MAX(votes) as vote
+  FROM movies`
+
+  const params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
+    })
+  })
+})
+
 // Get movies made by 2 or more actors
 app.get('/api/actors/multiple', (req, res, next) => {
   const sql = `SELECT id, title, actorsNames
@@ -312,12 +330,21 @@ app.get('/api/actors/multiple', (req, res, next) => {
 })
 
 // Get results from a customized search
-app.get('/api/customized/:from', (req, res, next) => {
+app.get('/api/customized', (req, res, next) => {
+  let conditions = 'WHERE id IS NOT NULL'
+
+  if(req.query.birth) conditions = conditions.concat(` AND birth_year = ${req.query.birth}`)
+  if(req.query.death) conditions = conditions.concat(` AND death_year = ${req.query.death}`)
+  if(req.query.rate) conditions = conditions.concat(` AND rating >= ${req.query.rate}`)
+  if(req.query.votes) conditions = conditions.concat(` AND votes >= ${req.query.votes}`)
+  if(req.query.year) conditions = conditions.concat(` AND year = ${req.query.year}`)
+
   const sql = `SELECT *
-      FROM ?
+      FROM ${req.query.from}
+      ${conditions}
       LIMIT 3000`
 
-  const params = [req.params.from]
+  const params = []
   db.all(sql, params, (err, rows) => {
     if (err) {
       res.status(400).json({ 'error': err.message })

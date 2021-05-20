@@ -15,3 +15,17 @@
 .customized_options > * {
   margin-bottom: 1rem;
 }
+
+.customized_slider {
+  align-items: center;
+  display: flex;
+  width: 30rem;
+}
+
+.customized_slider > * {
+  margin-right: 1rem;
+}
+
+.customized_slider > * > * {
+  width: 7rem;
+}

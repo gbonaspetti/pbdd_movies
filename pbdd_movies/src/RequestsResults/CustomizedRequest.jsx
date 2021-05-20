@@ -71,7 +71,9 @@ class CustomizedRequest extends React.Component {
         )}
 
         {state.from === 'movies' && (
-          <CustomizedRequestMovies/>
+          <CustomizedRequestMovies
+            yearList={state.yearList}
+          />
         )}
       </div>
     )
