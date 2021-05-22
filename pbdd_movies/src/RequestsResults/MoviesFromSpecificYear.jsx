@@ -8,6 +8,10 @@ import {
   getMoviesFromSpecificYear
 } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 require('./MoviesFromSpecificYear.css')
 
@@ -16,6 +20,7 @@ class MoviesFromSpecificYear extends React.Component {
     super(props)
     this.state = {
       moviesFromYearList: [],
+      request: false,
       year: 2021,
       yearList: []
     }
@@ -48,11 +53,13 @@ class MoviesFromSpecificYear extends React.Component {
     })
   }
 
+  handleToggleRequest = () => this.setState(prev => ({ request: !prev.request }))
+
   render() {
     const { state } = this
     return (
       <div>
-        <div className='titleWithInformation'>
+        <div className='titleWithInformation' onClick={this.handleToggleRequest}>
           <h2>Filmes produzidos no ano {state.year}</h2>
           <p>ordenados por melhor nota no IMDb</p>
         </div>
@@ -88,6 +95,22 @@ class MoviesFromSpecificYear extends React.Component {
           </div>
         ) : <p>Carregando...</p>
         }
+
+        <Dialog
+          open={state.request}
+          onClose={this.handleToggleRequest}
+        >
+          <DialogTitle>Código da consulta principal</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <p>SELECT id, title, rating, votes</p>
+              <p>FROM movies</p>
+              <p>WHERE year = {state.year}</p>
+              <p>ORDER BY rating DESC</p>
+              <p>LIMIT 3000</p>
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </div>
     )
   }

@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import CustomizedRequestActors from './CustomizedRequest/CustomizedRequestActors.jsx'
-import CustomizedRequestGenres from './CustomizedRequest/CustomizedRequestGenres.jsx'
 import CustomizedRequestMovies from './CustomizedRequest/CustomizedRequestMovies.jsx'
 import {
   getAllPossibleYears
@@ -48,14 +47,11 @@ class CustomizedRequest extends React.Component {
             onChange={e => this.setState({ from: e.target.value })}
             label='O que você deseja procurar?'
           >
-            <MenuItem value='movies'>
-              Um filme
-            </MenuItem>
             <MenuItem value='actors'>
               Um ator
             </MenuItem>
-            <MenuItem value='genres'>
-              Um gênero
+            <MenuItem value='movies'>
+              Um filme
             </MenuItem>
           </Select>
         </FormControl>
@@ -64,10 +60,6 @@ class CustomizedRequest extends React.Component {
           <CustomizedRequestActors
             yearList={state.yearList}
           />
-        )}
-
-        {state.from === 'genres' && (
-          <CustomizedRequestGenres/>
         )}
 
         {state.from === 'movies' && (
