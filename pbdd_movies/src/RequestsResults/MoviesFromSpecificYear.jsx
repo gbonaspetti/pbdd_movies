@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {
-  getAllPossibleYears,
+  getAllPossibleMoviesYears,
   getMoviesFromSpecificYear
 } from '../async.js'
 import { generateFetchResponse } from '../helper.js'
@@ -31,13 +31,13 @@ class MoviesFromSpecificYear extends React.Component {
       await getMoviesFromSpecificYear(this.state.year)
     )
 
-    const fetchGetAllPossibleYears = await generateFetchResponse(
-      await getAllPossibleYears()
+    const fetchGetAllPossibleMoviesYears = await generateFetchResponse(
+      await getAllPossibleMoviesYears()
     )
 
     this.setState({
       moviesFromYearList: fetchGetMoviesFromSpecificYear.body.data,
-      yearList: fetchGetAllPossibleYears.body.data
+      yearList: fetchGetAllPossibleMoviesYears.body.data
     })
   }
 

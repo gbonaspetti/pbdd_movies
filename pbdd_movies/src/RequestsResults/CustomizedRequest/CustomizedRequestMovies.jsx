@@ -9,6 +9,7 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import {
+  getAllPossibleMoviesYears,
   getCustomizedSearchResult,
   getMaxVoteNumber
 } from '../../async.js'
@@ -22,7 +23,8 @@ class CustomizedRequestMovies extends React.Component {
       movieList: undefined,
       rate: 0,
       votes: 0,
-      year: ''
+      year: '',
+      yearList: []
     }
   }
 
@@ -31,8 +33,13 @@ class CustomizedRequestMovies extends React.Component {
       await getMaxVoteNumber()
     )
 
+    const fetchGetAllPossibleMoviesYears = await generateFetchResponse(
+      await getAllPossibleMoviesYears()
+    )
+
     this.setState({
-      maxVote: fetchGetMaxVoteNumber.body.data[0].vote
+      maxVote: fetchGetMaxVoteNumber.body.data[0].vote,
+      yearList: fetchGetAllPossibleMoviesYears.body.data
     })
   }
 
@@ -79,9 +86,9 @@ class CustomizedRequestMovies extends React.Component {
   handleClickSearch = async () => {
     const { state } = this
     let query = ''
-    if(state.rate) query = query.concat(`&rate=${state.rate}`)
-    if(state.votes) query = query.concat(`&votes=${state.votes}`)
-    if(state.year) query = query.concat(`&year=${state.year}`)
+    if (state.rate) query = query.concat(`&rate=${state.rate}`)
+    if (state.votes) query = query.concat(`&votes=${state.votes}`)
+    if (state.year) query = query.concat(`&year=${state.year}`)
 
     const fetchGetMovies = await generateFetchResponse(
       await getCustomizedSearchResult('movies', query)
@@ -91,7 +98,7 @@ class CustomizedRequestMovies extends React.Component {
   }
 
   render() {
-    const { props, state } = this
+    const { state } = this
     return (
       <div className='customized_options'>
         <span>
@@ -107,7 +114,7 @@ class CustomizedRequestMovies extends React.Component {
               <MenuItem value={''}>
                 ----
               </MenuItem>
-              {props.yearList.map(possibleYear =>
+              {state.yearList.map(possibleYear =>
                 <MenuItem key={possibleYear.year} value={possibleYear.year}>
                   {possibleYear.year}
                 </MenuItem>
@@ -171,12 +178,14 @@ class CustomizedRequestMovies extends React.Component {
           </Grid>
         </span>
 
-        <Button
-          variant='outlined'
-          onClick={this.handleClickSearch}
-        >
-          Procurar
-        </Button>
+        <span>
+          <Button
+            variant='outlined'
+            onClick={this.handleClickSearch}
+          >
+            Procurar
+          </Button>
+        </span>
 
         {state.movieList &&
           state.movieList.length > 0 &&
@@ -187,7 +196,7 @@ class CustomizedRequestMovies extends React.Component {
               {movie.rating ? movie.rating : 'Filme não avaliado'}
               {movie.votes && ` - ${movie.votes} votos`}
             </div>
-        )}
+          )}
 
         {state.movieList && state.movieList.length === 0 && (
           <div>Nenhum filme encontrado</div>

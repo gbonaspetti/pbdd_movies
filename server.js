@@ -37,6 +37,46 @@ app.get('/api/actors/dead', (req, res, next) => {
   })
 })
 
+// Get all possible movies years
+app.get('/api/birth/years', (req, res, next) => {
+  const sql = `SELECT birth_year as year
+  FROM actors
+  WHERE birth_year IS NOT NULL
+  GROUP BY birth_year`
+
+  const params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
+    })
+  })
+})
+
+// Get all possible movies years
+app.get('/api/death/years', (req, res, next) => {
+  const sql = `SELECT death_year as year
+  FROM actors
+  WHERE death_year IS NOT NULL
+  GROUP BY death_year`
+
+  const params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ 'error': err.message })
+      return
+    }
+    res.status(200).json({
+      'message': 'success',
+      'data': rows
+    })
+  })
+})
+
 // Get all possible years
 app.get('/api/years', (req, res, next) => {
   const sql = `SELECT year

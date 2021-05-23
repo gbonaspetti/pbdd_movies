@@ -27,7 +27,11 @@ export const getBestRatedActors = () => fetchGet('actors/most/year')
 
 export const getBestRatedMovies = () => fetchGet('movies/most/year')
 
-export const getAllPossibleYears = () => fetchGet('years')
+export const getAllPossibleMoviesYears = () => fetchGet('movies/years')
+
+export const getAllPossibleBirthYears = () => fetchGet('birth/years')
+
+export const getAllPossibleDeathYears = () => fetchGet('death/years')
 
 export const getAllPossibleActors = () => fetchGet('actors')
 

@@ -5,10 +5,6 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import CustomizedRequestActors from './CustomizedRequest/CustomizedRequestActors.jsx'
 import CustomizedRequestMovies from './CustomizedRequest/CustomizedRequestMovies.jsx'
-import {
-  getAllPossibleYears
-} from '../async.js'
-import { generateFetchResponse } from '../helper.js'
 
 require('./CustomizedRequest.css')
 
@@ -16,19 +12,8 @@ class CustomizedRequest extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      from: 'actors',
-      yearList: []
+      from: 'actors'
     }
-  }
-
-  async componentDidMount() {
-    const fetchGetAllPossibleYears = await generateFetchResponse(
-      await getAllPossibleYears()
-    )
-
-    this.setState({
-      yearList: fetchGetAllPossibleYears.body.data
-    })
   }
 
   render() {
@@ -57,15 +42,11 @@ class CustomizedRequest extends React.Component {
         </FormControl>
 
         {state.from === 'actors' && (
-          <CustomizedRequestActors
-            yearList={state.yearList}
-          />
+          <CustomizedRequestActors />
         )}
 
         {state.from === 'movies' && (
-          <CustomizedRequestMovies
-            yearList={state.yearList}
-          />
+          <CustomizedRequestMovies />
         )}
       </div>
     )

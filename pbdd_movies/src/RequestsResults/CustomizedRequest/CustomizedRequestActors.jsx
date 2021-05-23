@@ -4,7 +4,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import { getCustomizedSearchResult } from '../../async.js'
+import {
+  getAllPossibleBirthYears,
+  getAllPossibleDeathYears,
+  getCustomizedSearchResult
+} from '../../async.js'
 import { generateFetchResponse } from '../../helper.js'
 
 class CustomizedRequestActors extends React.Component {
@@ -13,8 +17,25 @@ class CustomizedRequestActors extends React.Component {
     this.state = {
       actorList: undefined,
       birth: '',
-      death: ''
+      birthList: [],
+      death: '',
+      deathList: []
     }
+  }
+
+  async componentDidMount() {
+    const fetchGetAllPossibleBirthYears = await generateFetchResponse(
+      await getAllPossibleBirthYears()
+    )
+
+    const fetchGetAllPossibleDeathYears = await generateFetchResponse(
+      await getAllPossibleDeathYears()
+    )
+
+    this.setState({
+      birthList: fetchGetAllPossibleBirthYears.body.data,
+      deathList: fetchGetAllPossibleDeathYears.body.data
+    })
   }
 
   handleChangeBirth = e => this.setState({ birth: e.target.value })
@@ -34,7 +55,7 @@ class CustomizedRequestActors extends React.Component {
   }
 
   render() {
-    const { props, state } = this
+    const { state } = this
     return (
       <div className='customized_options'>
         <span>
@@ -50,7 +71,7 @@ class CustomizedRequestActors extends React.Component {
               <MenuItem value={''}>
                 ----
               </MenuItem>
-              {props.yearList.map(possibleYear =>
+              {state.birthList.map(possibleYear =>
                 <MenuItem key={possibleYear.year} value={possibleYear.year}>
                   {possibleYear.year}
                 </MenuItem>
@@ -71,7 +92,7 @@ class CustomizedRequestActors extends React.Component {
               <MenuItem value={''}>
                 ----
               </MenuItem>
-              {props.yearList.map(possibleYear =>
+              {state.deathList.map(possibleYear =>
                 <MenuItem key={possibleYear.year} value={possibleYear.year}>
                   {possibleYear.year}
                 </MenuItem>
@@ -80,20 +101,22 @@ class CustomizedRequestActors extends React.Component {
           </FormControl>
         </span>
 
-        <Button
-          variant='outlined'
-          onClick={this.handleClickSearch}
-        >
-          Procurar
-        </Button>
+        <span>
+          <Button
+            variant='outlined'
+            onClick={this.handleClickSearch}
+          >
+            Procurar
+          </Button>
+        </span>
 
         {state.actorList &&
           state.actorList.length > 0 &&
           state.actorList.map(actor =>
             <div>
               {actor.name}&nbsp;-&nbsp;
-              {actor.birth_year ? actor.birth_year : 'Ano de nascimento não registrado'}&nbsp;-&nbsp;
-              {actor.death_year ? actor.death_year : 'Ano de falecimento não registrado'}
+              {actor.birth_year ? `☆ ${actor.birth_year}` : 'Ano de nascimento não registrado'}&nbsp;-&nbsp;
+              {actor.death_year ? `✞ ${actor.death_year}` : 'Ano de falecimento não registrado'}
             </div>
         )}
 
