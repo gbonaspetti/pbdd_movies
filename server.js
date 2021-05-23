@@ -78,7 +78,7 @@ app.get('/api/death/years', (req, res, next) => {
 })
 
 // Get all possible years
-app.get('/api/years', (req, res, next) => {
+app.get('/api/movies/years', (req, res, next) => {
   const sql = `SELECT year
   FROM movies
   WHERE year IS NOT NULL

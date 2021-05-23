@@ -32,6 +32,15 @@ class Homepage extends React.Component {
             Ele foi gerado em março de 2021, qualquer mudança realizada no banco de dados
             original não é atualizada no banco de dados utilizado aqui.
           </p>
+
+          <p>
+            Alguns dados podem parecer estranhos. Acreditamos que sejam devido a
+            erros durante a inserção desses dados. Para ser fiel ao banco da IMDb, nenhum
+            dado foi alterado. Para mais detalhes,&nbsp;
+            <a href='Article.pdf' target='_blank'>
+              confira o artigo do projeto
+            </a>.
+          </p>
         </div>
 
         <Route exact path={PAGE.HOME} component={RequestOptions} />
